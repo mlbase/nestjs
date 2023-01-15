@@ -4,7 +4,10 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 // local dependency
-import { User } from './users/user';
+import { User } from './users/user.entity';
+import { UsersModule } from './users/user.module';
+import { AuthModule } from './auth/auth.module';
+
 
 
 @Module({
@@ -17,9 +20,10 @@ import { User } from './users/user';
       password: '1234',
       database: 'final',
       entities: [User],
-      synchronize: true
-    })
-
+      synchronize: true,
+    }),
+    UsersModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
